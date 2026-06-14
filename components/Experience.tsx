@@ -21,6 +21,7 @@ type Pose = {
   scale: number;
   camZ: number;
   ledIntensity: number;
+  explode: number;
 };
 
 /* Turntable choreography for the real condenser unit: rotY does the big
@@ -29,17 +30,17 @@ type Pose = {
    scaled by viewport width so the unit never eats the copy. */
 const POSES: Pose[] = [
   // 1 hero — front 3/4, centred, suspended
-  { rotX: 0.05, rotY: 0.0, rotZ: 0.0, posX: 0.0, posY: 0.0, scale: 1.0, camZ: 5.2, ledIntensity: 1.0 },
+  { rotX: 0.05, rotY: 0.0, rotZ: 0.0, posX: 0.0, posY: 0.0, scale: 1.0, camZ: 5.2, ledIntensity: 1.0, explode: 0 },
   // 2 technology — turn to the side, slide right (copy left)
-  { rotX: 0.1, rotY: 0.8, rotZ: 0.0, posX: 1.15, posY: 0.0, scale: 1.05, camZ: 4.8, ledIntensity: 1.3 },
+  { rotX: 0.1, rotY: 0.8, rotZ: 0.0, posX: 1.15, posY: 0.0, scale: 1.05, camZ: 4.8, ledIntensity: 1.3, explode: 0 },
   // 3 specs — pull back to reveal full scale, slide left (copy right)
-  { rotX: -0.06, rotY: -0.55, rotZ: 0.0, posX: -1.35, posY: 0.1, scale: 0.68, camZ: 5.6, ledIntensity: 0.95 },
+  { rotX: -0.06, rotY: -0.55, rotZ: 0.0, posX: -1.35, posY: 0.1, scale: 0.68, camZ: 5.6, ledIntensity: 0.95, explode: 0 },
   // 4 core — zoom into the fan detail, slide right (copy left)
-  { rotX: 0.08, rotY: 0.28, rotZ: 0.0, posX: 0.7, posY: -0.05, scale: 1.7, camZ: 3.8, ledIntensity: 1.6 },
+  { rotX: 0.08, rotY: 0.28, rotZ: 0.0, posX: 0.7, posY: -0.05, scale: 1.7, camZ: 3.8, ledIntensity: 1.6, explode: 1 },
   // 5 proof — turn to the far side, slide left (copy right)
-  { rotX: -0.05, rotY: -1.05, rotZ: 0.0, posX: -1.25, posY: 0.0, scale: 0.95, camZ: 4.9, ledIntensity: 1.15 },
+  { rotX: -0.05, rotY: -1.05, rotZ: 0.0, posX: -1.25, posY: 0.0, scale: 0.95, camZ: 4.9, ledIntensity: 1.15, explode: 0 },
   // 6 cta — return front, centred
-  { rotX: 0.05, rotY: 0.0, rotZ: 0.0, posX: 0.0, posY: 0.05, scale: 1.05, camZ: 4.9, ledIntensity: 1.35 },
+  { rotX: 0.05, rotY: 0.0, rotZ: 0.0, posX: 0.0, posY: 0.05, scale: 1.05, camZ: 4.9, ledIntensity: 1.35, explode: 0 },
 ];
 
 function detectTouch() {

@@ -19,6 +19,7 @@ export const model = {
 
   // entry materialize (0 -> 1 on first load)
   appear: 0,
+  explode: 0,
 
   // live progress 0..1 for any UI that wants it
   progress: 0,
