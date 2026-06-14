@@ -147,7 +147,6 @@ body::-webkit-scrollbar {
 .btn-glow:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 15px 50px -15px rgba(255, 255, 255, 0.2);
-  color: #fff;
 }
 .btn-glow:hover::before {
   opacity: 1;

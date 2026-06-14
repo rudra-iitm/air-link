@@ -16,7 +16,7 @@ import {
 function Nav() {
   return (
     <nav className="fixed inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-5 md:px-12 bg-black/40 backdrop-blur-xl">
-      <div className="hidden gap-3 text-[0.8rem] font-medium text-white md:flex">
+      <div className="flex flex-wrap items-center gap-3 text-[0.7rem] font-medium text-white md:text-[0.8rem]">
         <a className="rounded-full border border-white/20 px-5 py-2 hover:bg-white/10 transition-colors" href="#technology">Technology</a>
         <a className="rounded-full border border-white/20 px-5 py-2 hover:bg-white/10 transition-colors" href="#specs">Specs</a>
         <a className="rounded-full border border-white/20 px-5 py-2 hover:bg-white/10 transition-colors" href="#proof">Proof</a>
@@ -25,7 +25,7 @@ function Nav() {
       <a
         href="#order"
         data-cursor="hot"
-        className="btn-glow hidden rounded-full bg-white/15 border border-white/10 px-5 py-2.5 text-[0.8rem] font-medium text-white backdrop-blur-md md:flex items-center gap-2"
+        className="btn-glow flex items-center gap-2 rounded-full border border-white/10 bg-white/15 px-4 py-2 text-[0.7rem] font-medium text-white backdrop-blur-md md:px-5 md:py-2.5 md:text-[0.8rem]"
       >
         <ArrowUpRight size={14} strokeWidth={1.25} /> Book a demo
       </a>
