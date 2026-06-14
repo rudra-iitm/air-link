@@ -196,6 +196,7 @@ export default function Experience() {
       </div>
 
       <div className="grain" />
+      <Loader />
     </>
   );
 }

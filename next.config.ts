@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "/air-link",
+  basePath: process.env.NODE_ENV === "production" ? "/air-link" : "",
 };
 
 export default nextConfig;
