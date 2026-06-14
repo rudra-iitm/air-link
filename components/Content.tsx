@@ -13,10 +13,51 @@ import {
   Leaf,
 } from "lucide-react";
 
+import { useState } from "react";
+import Link from "next/link";
+
 function Nav() {
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
+
   return (
     <nav className="fixed inset-x-0 top-0 z-30 flex items-center justify-between px-4 py-3 md:px-12 md:py-5 bg-black/40 backdrop-blur-xl">
       <div className="flex items-center gap-2 overflow-x-auto whitespace-nowrap text-[0.65rem] font-medium text-white md:gap-3 md:text-[0.8rem] flex-1 pr-4 no-scrollbar">
+        
+        {/* Products Dropdown */}
+        <div 
+          className="relative group"
+          onMouseEnter={() => setIsProductsOpen(true)}
+          onMouseLeave={() => setIsProductsOpen(false)}
+        >
+          <Link 
+            href="/products" 
+            className="rounded-full border border-white/20 px-4 py-1.5 hover:bg-white/10 transition-colors md:px-5 md:py-2 inline-flex items-center gap-1"
+          >
+            Products
+          </Link>
+
+          {/* Mega Menu Dropdown */}
+          <div 
+            className={`absolute top-full left-0 mt-4 p-4 rounded-2xl border border-white/10 bg-black/80 backdrop-blur-2xl transition-all duration-300 transform origin-top-left flex gap-4 ${
+              isProductsOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"
+            }`}
+          >
+            {[
+              { id: "split-ac", name: "Aura Split AC", img: "/images/split_ac.png" },
+              { id: "ceiling-cassette", name: "Nimbus Cassette", img: "/images/ceiling_cassette.png" },
+              { id: "air-purifier", name: "Purity Pro", img: "/images/air_purifier.png" },
+              { id: "industrial-cooler", name: "Titan Precision", img: "/images/industrial_cooler.png" }
+            ].map(prod => (
+              <Link href={`/products`} key={prod.id} className="group/item flex flex-col items-center gap-2 w-32 rounded-xl hover:bg-white/5 p-2 transition-colors">
+                <div className="w-full h-24 rounded-lg overflow-hidden bg-black/50 border border-white/5">
+                  <img src={prod.img} alt={prod.name} className="w-full h-full object-cover group-hover/item:scale-110 transition-transform duration-500" />
+                </div>
+                <span className="text-[0.6rem] uppercase tracking-wider text-white/80 text-center">{prod.name}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <a className="rounded-full border border-white/20 px-4 py-1.5 hover:bg-white/10 transition-colors md:px-5 md:py-2" href="#technology">Technology</a>
         <a className="rounded-full border border-white/20 px-4 py-1.5 hover:bg-white/10 transition-colors md:px-5 md:py-2" href="#specs">Specs</a>
         <a className="rounded-full border border-white/20 px-4 py-1.5 hover:bg-white/10 transition-colors md:px-5 md:py-2" href="#proof">Proof</a>
