@@ -124,7 +124,7 @@ export default function Experience() {
       }
 
       // per-section copy reveals
-      gsap.set("[data-reveal]", { opacity: 0, y: 26 });
+      gsap.set("[data-reveal]", { opacity: 0, y: 40 });
       const sections = gsap.utils.toArray<HTMLElement>("[data-section]");
       sections.forEach((sec) => {
         const items = sec.querySelectorAll("[data-reveal]");
@@ -132,20 +132,20 @@ export default function Experience() {
         gsap.to(items, {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: "power3.out",
-          stagger: 0.08,
+          duration: 1.4,
+          ease: "power4.out",
+          stagger: 0.12,
           scrollTrigger: {
             trigger: sec,
-            start: "top 72%",
+            start: "top 75%",
           },
         });
       });
 
-      // big brand wordmark sits behind the model; fade it out as the hero leaves
       gsap.to("#brandmark", {
         opacity: 0,
-        yPercent: -8,
+        yPercent: -15,
+        scale: 1.05,
         ease: "none",
         scrollTrigger: {
           trigger: "#hero",
@@ -180,8 +180,8 @@ export default function Experience() {
       {/* oversized brand wordmark — sits BEHIND the model, like the Surge hero */}
       <div className="brandmark" id="brandmark" aria-hidden>
         <span>
-          Airlink
           <i>©</i>
+          AIRLINK
         </span>
       </div>
 

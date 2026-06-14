@@ -19,19 +19,19 @@ import {
 
 function Nav() {
   return (
-    <nav className="fixed inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-5 md:px-12 mix-blend-difference">
-      <div className="hidden gap-9 text-[0.72rem] font-medium uppercase tracking-[0.18em] md:flex">
-        <a className="nav-link" href="#technology">Technology</a>
-        <a className="nav-link" href="#specs">Specs</a>
-        <a className="nav-link" href="#proof">Proof</a>
-        <a className="nav-link" href="#order">Enquire</a>
+    <nav className="fixed inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-5 md:px-12 bg-black/40 backdrop-blur-xl">
+      <div className="hidden gap-3 text-[0.8rem] font-medium text-white md:flex">
+        <a className="rounded-full border border-white/20 px-5 py-2 hover:bg-white/10 transition-colors" href="#technology">Technology</a>
+        <a className="rounded-full border border-white/20 px-5 py-2 hover:bg-white/10 transition-colors" href="#specs">Specs</a>
+        <a className="rounded-full border border-white/20 px-5 py-2 hover:bg-white/10 transition-colors" href="#proof">Proof</a>
+        <a className="rounded-full border border-white/20 px-5 py-2 hover:bg-white/10 transition-colors" href="#order">Enquire</a>
       </div>
       <a
         href="#order"
         data-cursor="hot"
-        className="btn-glow hidden rounded-full border border-white/25 px-5 py-2 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-white md:block"
+        className="btn-glow hidden rounded-full bg-white/15 border border-white/10 px-5 py-2.5 text-[0.8rem] font-medium text-white backdrop-blur-md md:flex items-center gap-2"
       >
-        Book a demo
+        <ArrowUpRight size={14} strokeWidth={1.25} /> Book a demo
       </a>
     </nav>
   );
@@ -82,15 +82,15 @@ export default function Content() {
       <Section id="technology" className="items-start">
         <div className="max-w-xl">
           <div data-reveal className="eyebrow mb-5 flex items-center gap-3">
-            <Wind size={14} className="text-ice" /> Engineered Airflow
+            <Wind size={14} strokeWidth={1.25} className="text-white" /> Engineered Airflow
           </div>
           <h2
             data-reveal
-            className="headline text-frost text-[13vw] leading-[0.86] md:text-[7.5vw]"
+            className="font-medium leading-[1.05] tracking-[-0.04em] text-white text-[10vw] md:text-[6vw]"
           >
             Moves air,
             <br />
-            <span className="ice-text">not noise.</span>
+            <span className="text-white">not noise.</span>
           </h2>
           <p
             data-reveal
@@ -101,9 +101,9 @@ export default function Content() {
             conditioned air while staying below a whisper.
           </p>
           <div className="mt-9 flex flex-wrap gap-x-10 gap-y-5">
-            <Stat icon={<Wind size={16} />} value="12,000" unit="m³/h" label="Airflow" />
-            <Stat icon={<Volume2 size={16} />} value="28" unit="dBA" label="At full load" />
-            <Stat icon={<Snowflake size={16} />} value="2–40" unit="TR" label="Modular cooling" />
+            <Stat icon={<Wind size={16} strokeWidth={1.25} />} value="12,000" unit="m³/h" label="Airflow" />
+            <Stat icon={<Volume2 size={16} strokeWidth={1.25} />} value="28" unit="dBA" label="At full load" />
+            <Stat icon={<Snowflake size={16} strokeWidth={1.25} />} value="2–40" unit="TR" label="Modular cooling" />
           </div>
         </div>
       </Section>
@@ -112,15 +112,15 @@ export default function Content() {
       <Section id="specs" className="items-end text-right">
         <div className="max-w-xl">
           <div data-reveal className="eyebrow mb-5 flex items-center justify-end gap-3">
-            Built to the micron <Gauge size={14} className="text-ice" />
+            Built to the micron <Gauge size={14} strokeWidth={1.25} className="text-white" />
           </div>
           <h2
             data-reveal
-            className="headline text-frost text-[13vw] leading-[0.86] md:text-[7.5vw]"
+            className="font-medium leading-[1.05] tracking-[-0.04em] text-white text-[10vw] md:text-[6vw]"
           >
             Pure
             <br />
-            <span className="ice-text">power.</span>
+            <span className="text-white">power.</span>
           </h2>
 
           <dl
@@ -141,15 +141,15 @@ export default function Content() {
       <Section id="core" className="items-start">
         <div className="max-w-xl">
           <div data-reveal className="eyebrow mb-5 flex items-center gap-3">
-            <Cpu size={14} className="text-ice" /> The Intelligent Core
+            <Cpu size={14} strokeWidth={1.25} className="text-white" /> The Intelligent Core
           </div>
           <h2
             data-reveal
-            className="headline text-frost text-[13vw] leading-[0.86] md:text-[7.5vw]"
+            className="font-medium leading-[1.05] tracking-[-0.04em] text-white text-[10vw] md:text-[6vw]"
           >
             It thinks
             <br />
-            <span className="ice-text">in air.</span>
+            <span className="text-white">in air.</span>
           </h2>
           <p
             data-reveal
@@ -160,9 +160,9 @@ export default function Content() {
             time so a room never overshoots, and never wastes a watt.
           </p>
           <ul data-reveal className="mt-8 space-y-4">
-            <Feature icon={<Cpu size={16} />} title="Adaptive load sensing" desc="Predicts demand before the room feels it." />
-            <Feature icon={<Leaf size={16} />} title="Eco-modulation" desc="Up to 41% lower energy draw at part load." />
-            <Feature icon={<ShieldCheck size={16} />} title="Self-diagnostics" desc="Flags a failing part weeks ahead." />
+            <Feature icon={<Cpu size={16} strokeWidth={1.25} />} title="Adaptive load sensing" desc="Predicts demand before the room feels it." />
+            <Feature icon={<Leaf size={16} strokeWidth={1.25} />} title="Eco-modulation" desc="Up to 41% lower energy draw at part load." />
+            <Feature icon={<ShieldCheck size={16} strokeWidth={1.25} />} title="Self-diagnostics" desc="Flags a failing part weeks ahead." />
           </ul>
         </div>
       </Section>
@@ -171,15 +171,15 @@ export default function Content() {
       <Section id="proof" className="items-end text-right">
         <div className="max-w-2xl">
           <div data-reveal className="eyebrow mb-5 flex items-center justify-end gap-3">
-            Proven at scale <Award size={14} className="text-ice" />
+            Proven at scale <Award size={14} strokeWidth={1.25} className="text-white" />
           </div>
           <h2
             data-reveal
-            className="headline text-frost text-[13vw] leading-[0.86] md:text-[7.5vw]"
+            className="font-medium leading-[1.05] tracking-[-0.04em] text-white text-[10vw] md:text-[6vw]"
           >
             Trusted by
             <br />
-            <span className="ice-text">India&apos;s critical air.</span>
+            <span className="text-white">India&apos;s critical air.</span>
           </h2>
           <p
             data-reveal
@@ -202,9 +202,9 @@ export default function Content() {
             data-reveal
             className="ml-auto mt-8 flex max-w-lg flex-wrap items-center justify-end gap-6 text-[0.7rem] uppercase tracking-[0.2em] text-steel"
           >
-            <span className="flex items-center gap-2"><Factory size={14} className="text-ice" /> Pharma-grade</span>
-            <span className="flex items-center gap-2"><Leaf size={14} className="text-ice" /> IGBC certified</span>
-            <span className="flex items-center gap-2"><ShieldCheck size={14} className="text-ice" /> ISO 9001 · 14001</span>
+            <span className="flex items-center gap-2"><Factory size={14} strokeWidth={1.25} className="text-white" /> Pharma-grade</span>
+            <span className="flex items-center gap-2"><Leaf size={14} strokeWidth={1.25} className="text-white" /> IGBC certified</span>
+            <span className="flex items-center gap-2"><ShieldCheck size={14} strokeWidth={1.25} className="text-white" /> ISO 9001 · 14001</span>
           </div>
         </div>
       </Section>
@@ -212,31 +212,31 @@ export default function Content() {
       {/* ============================ 6 · CTA ============================ */}
       <Section id="order" className="items-center text-center">
         <div data-reveal className="eyebrow mb-6">Begin the install</div>
-        <h2 className="headline text-frost text-[18vw] leading-[0.82] md:text-[12vw]">
-          <span data-reveal className="block">Breathe</span>
-          <span data-reveal className="ice-text block">better.</span>
+        <h2 className="font-medium leading-[1.05] tracking-[-0.04em] text-white text-[10vw] leading-[1.05] md:text-[5vw] mb-4">
+          <span data-reveal className="block">Ready to Breathe?</span>
+          <span data-reveal className="block">Experience the Aether Difference</span>
         </h2>
         <p
           data-reveal
-          className="mt-8 max-w-md text-balance text-sm leading-relaxed text-steel md:text-base"
+          className="mt-6 max-w-md text-balance text-sm leading-relaxed text-steel md:text-base"
         >
           Configure an Aether engine for your space. Our engineers will model the
           airflow and return a precision quote within 48 hours.
         </p>
-        <div data-reveal className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+        <div data-reveal className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
           <a
             href="#"
             data-cursor="hot"
-            className="btn-glow flex items-center gap-2 rounded-full bg-ice px-8 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-void"
+            className="btn-glow flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-8 py-3.5 text-sm font-medium text-white"
           >
-            Configure your unit <ArrowUpRight size={16} />
+            Subscribe
           </a>
           <a
             href="#"
             data-cursor="hot"
-            className="btn-glow rounded-full border border-white/20 px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] text-frost"
+            className="btn-glow flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium text-black"
           >
-            Download spec sheet
+            <ArrowUpRight size={16} strokeWidth={1.25} /> Pre-order Now
           </a>
         </div>
 
@@ -268,7 +268,7 @@ function Stat({
 }) {
   return (
     <div>
-      <div className="mb-1 text-ice">{icon}</div>
+      <div className="mb-1 text-white">{icon}</div>
       <div className="font-display text-2xl font-semibold text-frost md:text-3xl">
         {value}
         <span className="ml-1 text-sm font-normal text-steel">{unit}</span>
@@ -299,7 +299,7 @@ function Feature({
 }) {
   return (
     <li className="flex items-start gap-4">
-      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ice/30 text-ice">
+      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/30 text-white">
         {icon}
       </span>
       <div>

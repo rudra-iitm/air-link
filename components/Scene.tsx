@@ -30,6 +30,23 @@ function useBlobTexture() {
   }, []);
 }
 
+/** Soft additive light pool for the studio floor */
+function useLightBlobTexture() {
+  return useMemo(() => {
+    const s = 256;
+    const c = document.createElement("canvas");
+    c.width = c.height = s;
+    const ctx = c.getContext("2d")!;
+    const g = ctx.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
+    g.addColorStop(0, "rgba(255,255,255,0.16)");
+    g.addColorStop(0.3, "rgba(255,255,255,0.06)");
+    g.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, s, s);
+    return new THREE.CanvasTexture(c);
+  }, []);
+}
+
 function Rig() {
   const group = useRef<THREE.Group>(null);
   const t = useRef(0);
@@ -81,6 +98,7 @@ function Rig() {
 
 export default function Scene({ simplified }: { simplified: boolean }) {
   const blob = useBlobTexture();
+  const lightBlob = useLightBlobTexture();
 
   return (
     <>
@@ -123,7 +141,13 @@ export default function Scene({ simplified }: { simplified: boolean }) {
       {/* ---------- studio floor ---------- */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, GROUND_Y, 0]} receiveShadow={!simplified}>
         <planeGeometry args={[60, 60]} />
-        <meshStandardMaterial color={"#0c0e11"} roughness={0.82} metalness={0.1} />
+        <shadowMaterial transparent opacity={0.65} />
+      </mesh>
+      
+      {/* ---------- soft pool of light ---------- */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, GROUND_Y - 0.005, 0]}>
+        <planeGeometry args={[18, 18]} />
+        <meshBasicMaterial map={lightBlob} transparent depthWrite={false} blending={THREE.AdditiveBlending} />
       </mesh>
 
       {/* mobile fallback grounding (no shadow maps on touch) */}

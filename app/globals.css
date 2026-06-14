@@ -7,12 +7,12 @@
 :root {
   --void: #070809;
   --void-2: #0b0d10;
-  --ice: #5ce1ff;        /* arctic cyan accent */
-  --ice-soft: #9aecff;
-  --ice-deep: #2a9fd6;
-  --frost: #eaf6fb;
-  --steel: #8b9aa6;
-  --steel-dim: #5a6670;
+  --ice: #ffffff;        /* neutral white */
+  --ice-soft: #f3f4f6;
+  --ice-deep: #d1d5db;
+  --frost: #ffffff;
+  --steel: #9ca3af;
+  --steel-dim: #6b7280;
 }
 
 @theme inline {
@@ -84,11 +84,11 @@ body {
 }
 
 .headline {
-  font-family: var(--font-display), sans-serif;
-  font-weight: 600;
-  line-height: 0.86;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  text-transform: none;
 }
 
 .eyebrow {
@@ -97,7 +97,7 @@ body {
   letter-spacing: 0.42em;
   text-transform: uppercase;
   font-size: clamp(0.62rem, 0.75vw, 0.78rem);
-  color: var(--ice);
+  color: #ffffff;
 }
 
 .text-balance {
@@ -105,10 +105,7 @@ body {
 }
 
 .ice-text {
-  background: linear-gradient(180deg, #ffffff 0%, var(--ice-soft) 55%, var(--ice-deep) 120%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #ffffff;
 }
 
 /* ----------------------------------------------------------------------------
@@ -151,13 +148,13 @@ body {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(120% 120% at 50% 0%, rgba(92, 225, 255, 0.18), transparent 70%);
+  background: radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.15), transparent 70%);
   opacity: 0;
   transition: opacity 0.45s ease;
 }
 .btn-glow:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 0 1px rgba(92, 225, 255, 0.5), 0 18px 60px -18px rgba(92, 225, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 15px 50px -15px rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 .btn-glow:hover::before {
@@ -180,21 +177,24 @@ body {
   margin-top: 13vh;
   font-family: var(--font-display), sans-serif;
   font-weight: 700;
-  font-size: clamp(4.5rem, 19vw, 18rem);
+  font-size: clamp(4rem, 11vw, 14rem);
   line-height: 1;
   letter-spacing: -0.045em;
   text-transform: uppercase;
-  color: #c4c9cd;
+  color: #d1d5db;
   white-space: nowrap;
+  display: flex;
+  align-items: flex-start;
 }
 .brandmark span i {
-  position: absolute;
-  top: 0.1em;
-  right: -0.5em;
+  position: relative;
+  top: 0.15em;
+  left: auto;
   font-size: 0.16em;
   font-style: normal;
   letter-spacing: 0;
   color: var(--steel);
+  margin-right: 0.08em;
 }
 
 /* Scroll cue */

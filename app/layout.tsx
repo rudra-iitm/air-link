@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Syncopate, Manrope } from "next/font/google";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = Syncopate({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
-const body = Inter({
+const body = Manrope({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
