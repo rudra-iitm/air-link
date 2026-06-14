@@ -1,13 +1,9 @@
 @import "tailwindcss";
 
-/* ----------------------------------------------------------------------------
-   Airlink — Aether Series
-   Design tokens
----------------------------------------------------------------------------- */
 :root {
   --void: #070809;
   --void-2: #0b0d10;
-  --ice: #ffffff;        /* neutral white */
+  --ice: #ffffff;
   --ice-soft: #f3f4f6;
   --ice-deep: #d1d5db;
   --frost: #ffffff;
@@ -30,7 +26,7 @@
 }
 
 html {
-  scroll-behavior: auto; /* Lenis owns scroll */
+  scroll-behavior: auto;
 }
 
 html,
@@ -43,12 +39,12 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overscroll-behavior: none;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
 }
 
 ::selection {
@@ -56,9 +52,6 @@ body::-webkit-scrollbar {
   color: var(--void);
 }
 
-/* ----------------------------------------------------------------------------
-   Film grain overlay
----------------------------------------------------------------------------- */
 .grain {
   position: fixed;
   inset: 0;
@@ -69,7 +62,6 @@ body::-webkit-scrollbar {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Vignette to focus the void */
 .vignette {
   position: fixed;
   inset: 0;
@@ -82,9 +74,6 @@ body::-webkit-scrollbar {
   );
 }
 
-/* ----------------------------------------------------------------------------
-   Typography helpers
----------------------------------------------------------------------------- */
 .font-display {
   font-family: var(--font-display), sans-serif;
 }
@@ -114,9 +103,6 @@ body::-webkit-scrollbar {
   color: #ffffff;
 }
 
-/* ----------------------------------------------------------------------------
-   Micro-interactions
----------------------------------------------------------------------------- */
 .nav-link {
   position: relative;
   color: var(--frost);
@@ -167,7 +153,6 @@ body::-webkit-scrollbar {
   opacity: 1;
 }
 
-/* Oversized brand wordmark behind the model (Surge-style) */
 .brandmark {
   position: fixed;
   inset: 0;
@@ -203,7 +188,6 @@ body::-webkit-scrollbar {
   margin-right: 0.08em;
 }
 
-/* Scroll cue */
 @keyframes cuefade {
   0%,
   100% {

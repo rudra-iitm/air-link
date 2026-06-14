@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -28,12 +28,14 @@ type GLTFResult = GLTF & {
   }
 }
 
+const BLADE_PIVOT = new THREE.Vector3(0.060, 0.410, 0.200);
+
 export default function AetherModel({ simplified = false }: Props) {
   const { scene, nodes } = useGLTF(MODEL_URL) as unknown as GLTFResult;
 
-  const bladeRef = useRef<THREE.Mesh>(null);
+  const pivotGroupRef = useRef<THREE.Group>(null);
+  const explodeGroupRef = useRef<THREE.Group>(null);
   const cageRef = useRef<THREE.Mesh>(null);
-  const [bladeCenter] = useState(() => new THREE.Vector3());
 
   const { offset, fit } = useMemo(() => {
     const box = new THREE.Box3().setFromObject(scene);
@@ -44,17 +46,6 @@ export default function AetherModel({ simplified = false }: Props) {
     const maxDim = Math.max(size.x, size.y, size.z);
     return { offset: center, fit: 2.4 / maxDim };
   }, [scene]);
-
-  // Use BoundingSphere to center the propeller perfectly. The 3 tips of the fan blade 
-  // define a perfect sphere, meaning its center is the exact mathematical rotational pivot!
-  const bladeGeom = useMemo(() => {
-    const g = nodes['Cylinder-Mesh_1'].geometry.clone();
-    g.computeBoundingSphere();
-    const center = g.boundingSphere!.center;
-    bladeCenter.copy(center);
-    g.translate(-center.x, -center.y, -center.z);
-    return g;
-  }, [nodes, bladeCenter]);
 
   const mats = useMemo(() => {
     const stdBody = new THREE.MeshStandardMaterial();
@@ -85,61 +76,61 @@ export default function AetherModel({ simplified = false }: Props) {
   }, []);
 
   useFrame((state, delta) => {
-    if (bladeRef.current) {
-      bladeRef.current.rotation.x -= delta * 10; // Medium speed, recognizable but powerful
+    if (pivotGroupRef.current) {
+      pivotGroupRef.current.rotation.x -= delta * 8;
     }
 
     const explode = scrollState.explode;
-    
-    // Impressive Explode: Huge translation with a cinematic flare rotation
+
     if (cageRef.current) {
       const targetX = explode * (2.8 / fit);
       cageRef.current.position.x = THREE.MathUtils.lerp(cageRef.current.position.x, targetX, delta * 8);
-      // Sick outward tumble effect
       cageRef.current.rotation.y = THREE.MathUtils.lerp(cageRef.current.rotation.y, explode * 0.15, delta * 8);
-      cageRef.current.rotation.z = THREE.MathUtils.lerp(cageRef.current.rotation.z, explode * 0.05, delta * 8);
     }
-    
-    if (bladeRef.current) {
-      const targetX = bladeCenter.x + explode * (1.3 / fit);
-      bladeRef.current.position.x = THREE.MathUtils.lerp(bladeRef.current.position.x, targetX, delta * 8);
-      bladeRef.current.position.y = bladeCenter.y;
-      bladeRef.current.position.z = bladeCenter.z;
+
+    if (explodeGroupRef.current) {
+      const targetX = explode * (1.3 / fit);
+      explodeGroupRef.current.position.x = THREE.MathUtils.lerp(explodeGroupRef.current.position.x, targetX, delta * 8);
     }
   });
 
   return (
     <group rotation={[0, -Math.PI / 2, 0]}>
       <group scale={fit} position={[-offset.x * fit, -offset.y * fit, -offset.z * fit]}>
-        <mesh 
-          castShadow={!simplified} 
-          receiveShadow={!simplified} 
-          geometry={nodes['Cylinder-Mesh'].geometry} 
-          material={mats.Body} 
-        />
-        
-        <mesh 
-          ref={bladeRef}
-          position={[bladeCenter.x, bladeCenter.y, bladeCenter.z]}
-          castShadow={!simplified} 
-          receiveShadow={!simplified} 
-          geometry={bladeGeom} 
-          material={mats.Blade} 
+        <mesh
+          castShadow={!simplified}
+          receiveShadow={!simplified}
+          geometry={nodes['Cylinder-Mesh'].geometry}
+          material={mats.Body}
         />
 
-        <mesh 
+        <group ref={explodeGroupRef}>
+          <group position={[BLADE_PIVOT.x, BLADE_PIVOT.y, BLADE_PIVOT.z]}>
+            <group ref={pivotGroupRef}>
+              <mesh
+                position={[-BLADE_PIVOT.x, -BLADE_PIVOT.y, -BLADE_PIVOT.z]}
+                castShadow={!simplified}
+                receiveShadow={!simplified}
+                geometry={nodes['Cylinder-Mesh_1'].geometry}
+                material={mats.Blade}
+              />
+            </group>
+          </group>
+        </group>
+
+        <mesh
           ref={cageRef}
-          castShadow={!simplified} 
-          receiveShadow={!simplified} 
-          geometry={nodes['Cylinder-Mesh_2'].geometry} 
-          material={mats.Cage} 
+          castShadow={!simplified}
+          receiveShadow={!simplified}
+          geometry={nodes['Cylinder-Mesh_2'].geometry}
+          material={mats.Cage}
         />
-        
-        <mesh 
-          castShadow={!simplified} 
-          receiveShadow={!simplified} 
-          geometry={nodes['Cylinder-Mesh_3'].geometry} 
-          material={mats.Inside} 
+
+        <mesh
+          castShadow={!simplified}
+          receiveShadow={!simplified}
+          geometry={nodes['Cylinder-Mesh_3'].geometry}
+          material={mats.Inside}
         />
       </group>
     </group>

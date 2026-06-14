@@ -13,10 +13,6 @@ import {
   Leaf,
 } from "lucide-react";
 
-/* Sections float transparently above the fixed 3D canvas (z-10).
-   Each is one viewport tall; the model is choreographed to sit opposite
-   the copy so nothing collides. */
-
 function Nav() {
   return (
     <nav className="fixed inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-5 md:px-12 bg-black/40 backdrop-blur-xl">
@@ -62,7 +58,6 @@ export default function Content() {
     <main className="relative z-10">
       <Nav />
 
-      {/* ============================ 1 · HERO ============================ */}
       <Section id="hero" className="items-center justify-end pb-28 text-center">
         <p className="max-w-xl text-balance text-lg leading-snug text-frost md:text-2xl">
           Where precision meets air.
@@ -78,7 +73,6 @@ export default function Content() {
         </div>
       </Section>
 
-      {/* ========================= 2 · TECHNOLOGY ======================== */}
       <Section id="technology" className="items-start">
         <div className="max-w-xl">
           <div data-reveal className="eyebrow mb-5 flex items-center gap-3">
@@ -108,7 +102,6 @@ export default function Content() {
         </div>
       </Section>
 
-      {/* =========================== 3 · SPECS =========================== */}
       <Section id="specs" className="items-end text-right">
         <div className="max-w-xl">
           <div data-reveal className="eyebrow mb-5 flex items-center justify-end gap-3">
@@ -137,7 +130,6 @@ export default function Content() {
         </div>
       </Section>
 
-      {/* =========================== 4 · CORE ============================ */}
       <Section id="core" className="items-start">
         <div className="max-w-xl">
           <div data-reveal className="eyebrow mb-5 flex items-center gap-3">
@@ -167,7 +159,6 @@ export default function Content() {
         </div>
       </Section>
 
-      {/* =========================== 5 · PROOF =========================== */}
       <Section id="proof" className="items-end text-right">
         <div className="max-w-2xl">
           <div data-reveal className="eyebrow mb-5 flex items-center justify-end gap-3">
@@ -209,7 +200,6 @@ export default function Content() {
         </div>
       </Section>
 
-      {/* ============================ 6 · CTA ============================ */}
       <Section id="order" className="items-center text-center">
         <div data-reveal className="eyebrow mb-6">Begin the install</div>
         <h2 className="font-medium leading-[1.05] tracking-[-0.04em] text-white text-[10vw] leading-[1.05] md:text-[5vw] mb-4">
@@ -252,8 +242,6 @@ export default function Content() {
     </main>
   );
 }
-
-/* ----------------------------- small bits ----------------------------- */
 
 function Stat({
   icon,

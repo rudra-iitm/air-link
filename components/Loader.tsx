@@ -9,12 +9,9 @@ export default function Loader() {
   const [shown, setShown] = useState(0);
   const raf = useRef(0);
 
-  // The scene is largely procedural, so drei's loader may report 0 the whole
-  // time. Drive a smooth synthetic progress and dismiss on a guaranteed timer,
-  // finishing early if real assets do report complete.
   useEffect(() => {
     const start = performance.now();
-    const MIN = 1100; // ms — minimum on-screen so the entrance reads
+    const MIN = 1100;
     const tick = (now: number) => {
       const elapsed = now - start;
       const timed = Math.min(100, (elapsed / MIN) * 100);
