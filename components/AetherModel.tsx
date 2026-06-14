@@ -7,7 +7,8 @@ import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import { model as scrollState } from "@/lib/scrollState";
 
-const MODEL_URL = "/models/airlink-unit.glb";
+const basePath = process.env.NODE_ENV === "production" ? "/air-link" : "";
+const MODEL_URL = `${basePath}/models/airlink-unit.glb`;
 
 type Props = {
   simplified?: boolean;

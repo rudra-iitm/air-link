@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: "/air-link",
 };
 
 export default nextConfig;
