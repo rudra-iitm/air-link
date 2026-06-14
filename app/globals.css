@@ -1,26 +1,235 @@
 @import "tailwindcss";
 
+/* ----------------------------------------------------------------------------
+   Airlink — Aether Series
+   Design tokens
+---------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --void: #070809;
+  --void-2: #0b0d10;
+  --ice: #5ce1ff;        /* arctic cyan accent */
+  --ice-soft: #9aecff;
+  --ice-deep: #2a9fd6;
+  --frost: #eaf6fb;
+  --steel: #8b9aa6;
+  --steel-dim: #5a6670;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-void: var(--void);
+  --color-ice: var(--ice);
+  --color-ice-soft: var(--ice-soft);
+  --color-frost: var(--frost);
+  --color-steel: var(--steel);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis owns scroll */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--void);
+  color: var(--frost);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
+
+::selection {
+  background: var(--ice);
+  color: var(--void);
+}
+
+/* ----------------------------------------------------------------------------
+   Film grain overlay
+---------------------------------------------------------------------------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Vignette to focus the void */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 45%,
+    transparent 30%,
+    rgba(3, 4, 5, 0.55) 100%
+  );
+}
+
+/* ----------------------------------------------------------------------------
+   Typography helpers
+---------------------------------------------------------------------------- */
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.headline {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-body), sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-size: clamp(0.62rem, 0.75vw, 0.78rem);
+  color: var(--ice);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.ice-text {
+  background: linear-gradient(180deg, #ffffff 0%, var(--ice-soft) 55%, var(--ice-deep) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ----------------------------------------------------------------------------
+   Micro-interactions
+---------------------------------------------------------------------------- */
+.nav-link {
+  position: relative;
+  color: var(--frost);
+  opacity: 0.72;
+  transition: opacity 0.35s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: var(--ice);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover {
+  opacity: 1;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-glow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease,
+    color 0.4s ease;
+}
+.btn-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(92, 225, 255, 0.18), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(92, 225, 255, 0.5), 0 18px 60px -18px rgba(92, 225, 255, 0.55);
+  color: #fff;
+}
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+/* Oversized brand wordmark behind the model (Surge-style) */
+.brandmark {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  will-change: opacity, transform;
+}
+.brandmark span {
+  position: relative;
+  margin-top: 13vh;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: clamp(4.5rem, 19vw, 18rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: #c4c9cd;
+  white-space: nowrap;
+}
+.brandmark span i {
+  position: absolute;
+  top: 0.1em;
+  right: -0.5em;
+  font-size: 0.16em;
+  font-style: normal;
+  letter-spacing: 0;
+  color: var(--steel);
+}
+
+/* Scroll cue */
+@keyframes cuefade {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(6px);
   }
 }
+.cue {
+  animation: cuefade 2.4s ease-in-out infinite;
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.will-reveal {
+  opacity: 0;
+}
+
+.divider-line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 154, 166, 0.25) 50%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue {
+    animation: none;
+  }
 }
