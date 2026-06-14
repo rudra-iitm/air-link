@@ -9,6 +9,8 @@ export type ProductConfig = {
   mediaUrl: string;
 };
 
+const basePath = process.env.NODE_ENV === 'production' ? '/air-link' : '';
+
 export const productsData: ProductConfig[] = [
   {
     id: "split-ac",
@@ -18,7 +20,7 @@ export const productsData: ProductConfig[] = [
     color: "#2C82C9", // Arctic blue accent
     lightColor: "#ffffff",
     rimColor: "#3b82f6", // Soft blue rim
-    mediaUrl: "/images/split_ac.png"
+    mediaUrl: `${basePath}/images/split_ac.png`
   },
   {
     id: "ceiling-cassette",
@@ -28,7 +30,7 @@ export const productsData: ProductConfig[] = [
     color: "#D4AF37", // Warm gold accent
     lightColor: "#fff4e6", // Warm neutral key
     rimColor: "#fde047", // Slight warm fill
-    mediaUrl: "/images/ceiling_cassette.png"
+    mediaUrl: `${basePath}/images/ceiling_cassette.png`
   },
   {
     id: "air-purifier",
@@ -38,7 +40,7 @@ export const productsData: ProductConfig[] = [
     color: "#E2E8F0", // Clean white accent
     lightColor: "#ffffff", // Bright white key
     rimColor: "#e9d5ff", // Soft lavender rim
-    mediaUrl: "/images/air_purifier.png"
+    mediaUrl: `${basePath}/images/air_purifier.png`
   },
   {
     id: "industrial-cooler",
@@ -48,6 +50,6 @@ export const productsData: ProductConfig[] = [
     color: "#22c55e", // Electric green accent
     lightColor: "#14b8a6", // Cool blue-green key
     rimColor: "#059669", // Electric rim
-    mediaUrl: "/images/industrial_cooler.png"
+    mediaUrl: `${basePath}/images/industrial_cooler.png`
   },
 ];

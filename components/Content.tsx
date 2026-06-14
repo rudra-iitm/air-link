@@ -43,10 +43,10 @@ function Nav() {
             }`}
           >
             {[
-              { id: "split-ac", name: "Aura Split AC", img: "/images/split_ac.png" },
-              { id: "ceiling-cassette", name: "Nimbus Cassette", img: "/images/ceiling_cassette.png" },
-              { id: "air-purifier", name: "Purity Pro", img: "/images/air_purifier.png" },
-              { id: "industrial-cooler", name: "Titan Precision", img: "/images/industrial_cooler.png" }
+              { id: "split-ac", name: "Aura Split AC", img: `${process.env.NODE_ENV === 'production' ? '/air-link' : ''}/images/split_ac.png` },
+              { id: "ceiling-cassette", name: "Nimbus Cassette", img: `${process.env.NODE_ENV === 'production' ? '/air-link' : ''}/images/ceiling_cassette.png` },
+              { id: "air-purifier", name: "Purity Pro", img: `${process.env.NODE_ENV === 'production' ? '/air-link' : ''}/images/air_purifier.png` },
+              { id: "industrial-cooler", name: "Titan Precision", img: `${process.env.NODE_ENV === 'production' ? '/air-link' : ''}/images/industrial_cooler.png` }
             ].map(prod => (
               <Link href={`/products`} key={prod.id} className="group/item flex flex-col items-center gap-2 w-32 rounded-xl hover:bg-white/5 p-2 transition-colors">
                 <div className="w-full h-24 rounded-lg overflow-hidden bg-black/50 border border-white/5">
