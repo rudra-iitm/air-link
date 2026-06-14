@@ -224,7 +224,7 @@ export default function Content() {
           <a
             href="#"
             data-cursor="hot"
-            className="btn-glow flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium text-black"
+            className="btn-glow flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium text-black hover:text-black"
           >
             <ArrowUpRight size={16} strokeWidth={1.25} /> Pre-order Now
           </a>
